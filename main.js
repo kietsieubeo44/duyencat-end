@@ -153,37 +153,47 @@ Fan = function () {
     this.speed = 0;
     this.acc = 0;
     this.redMat = new THREE.MeshLambertMaterial({
-        color: 0xad3525,
+        color: 0x8d3525,
         shading: THREE.FlatShading
     });
     this.greyMat = new THREE.MeshLambertMaterial({
-        color: 0x653f4c,
+        color: 0x858f4c,
         shading: THREE.FlatShading
     });
 
     this.yellowMat = new THREE.MeshLambertMaterial({
-        color: 0xfdd276,
+        color: 0x8dd276,
         shading: THREE.FlatShading
     });
 
-    var coreGeom = new THREE.BoxGeometry(10, 10, 20);
-    var sphereGeom = new THREE.BoxGeometry(10, 10, 3);
-    var propGeom = new THREE.BoxGeometry(10, 30, 2);
-    propGeom.applyMatrix(new THREE.Matrix4().makeTranslation(0, 25, 0));
+    var coreGeom = new THREE.BoxGeometry(0, 0, 0); // Adjusted core geometry dimensions
+    var sphereGeom = new THREE.BoxGeometry(0, 0, 0); // Adjusted sphere geometry dimensions
+    var propGeom = new THREE.BoxGeometry(50, 20, 10);
+    propGeom.applyMatrix(new THREE.Matrix4().makeTranslation(0, 30, 0));
 
-    this.core = new THREE.Mesh(coreGeom, this.greyMat);
+    // Create meshes for the core and sphere
+    this.core = new THREE.Mesh(coreGeom, this.yellowMat);
+    this.sphere = new THREE.Mesh(sphereGeom, this.yellow);
 
     // propellers
-    var prop1 = new THREE.Mesh(propGeom, this.redMat);
-    prop1.position.z = 15;
+    var prop1 = new THREE.Mesh(propGeom, this.yellowMat);
+    prop1.position.z = 1;
     var prop2 = prop1.clone();
-    prop2.rotation.z = Math.PI / 2;
+    prop2.rotation.z = Math.PI / 4;
     var prop3 = prop1.clone();
-    prop3.rotation.z = Math.PI;
+    prop3.rotation.z = Math.PI / 2;
     var prop4 = prop1.clone();
     prop4.rotation.z = -Math.PI / 2;
+    var prop5 = prop1.clone();
+    prop5.rotation.z = Math.PI / 2.2;
+    var prop6 = prop1.clone();
+    prop6.rotation.z = Math.PI / 1;
+    var prop7 = prop1.clone();
+    prop7.rotation.z = -Math.PI / 9;
+    var prop8 = prop1.clone();
+    prop8.rotation.z = -Math.PI / 3;
 
-    this.sphere = new THREE.Mesh(sphereGeom, this.yellowMat);
+    this.sphere = new THREE.Mesh(sphereGeom, this.yellow);
     this.sphere.position.z = 15;
 
     this.propeller = new THREE.Group();
@@ -191,6 +201,10 @@ Fan = function () {
     this.propeller.add(prop2);
     this.propeller.add(prop3);
     this.propeller.add(prop4);
+    this.propeller.add(prop5);
+    this.propeller.add(prop6);
+    this.propeller.add(prop7);
+    this.propeller.add(prop8);
 
     this.threegroup = new THREE.Group();
     this.threegroup.add(this.core);
@@ -226,20 +240,35 @@ Lion = function () {
         color: 0xfdd276,
         shading: THREE.FlatShading
     });
+    this.redMat = new THREE.MeshLambertMaterial({
+        color: 0xad3525,
+        shading: THREE.FlatShading
+    });
+
+    this.pinkMat = new THREE.MeshLambertMaterial({
+        color: 0xe55d2b,
+        shading: THREE.FlatShading
+    });
+
     this.whiteMat = new THREE.MeshLambertMaterial({
         color: 0xffffff,
         shading: THREE.FlatShading
     });
+
+    this.purpleMat = new THREE.MeshLambertMaterial({
+        color: 0x451954,
+        shading: THREE.FlatShading
+    });
+
     this.greyMat = new THREE.MeshLambertMaterial({
         color: 0x653f4c,
         shading: THREE.FlatShading
     });
+
     this.blackMat = new THREE.MeshLambertMaterial({
         color: 0x302925,
         shading: THREE.FlatShading
     });
-
-    // Define cat geometry and adjust as necessary
 
 
     var bodyGeom = new THREE.CylinderGeometry(30, 80, 140, 4);
